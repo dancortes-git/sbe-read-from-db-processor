@@ -59,7 +59,6 @@ public class ReadFromDbProcessorConfiguration {
 	public Step readFromDbProcessorStep1(StepBuilderFactory stepBuilderFactory, DataSource dataSource) {
 		return stepBuilderFactory.get("ReadFromDbProcessorStep1")
 				.<Customer, Customer>chunk(10)
-				.faultTolerant()
 				.listener(new SimpleChunkListener())
 				.reader(readFromDbProcessorReader(dataSource))
 				.processor(new CustomerUpperCaseItemProcessor())
